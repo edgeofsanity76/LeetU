@@ -4,6 +4,10 @@ using Microsoft.EntityFrameworkCore;
 
 namespace LeetU.Data.Repositories;
 
+/// <summary>
+/// Contains all the basic CRUD operations for all Entities. All repositories inherit from this class.
+/// </summary>
+/// <typeparam name="TEntity"></typeparam>
 public abstract class RepositoryBase<TEntity> : IRepository<TEntity> where TEntity : class
 {
     private readonly DbSet<TEntity> _dbSet;
@@ -36,6 +40,13 @@ public abstract class RepositoryBase<TEntity> : IRepository<TEntity> where TEnti
         return (await _dbSet.FindAsync(id))!;
     }
 
+    /// <summary>
+    /// Provides a way of searching a repository by providing a search expression
+    /// </summary>
+    /// <param name="filter">The search expression (ie, x => x.Id == entityId)</param>
+    /// <param name="orderBy">The orderby expression</param>
+    /// <param name="includes">Specify what entity relationships to include as defined by the key constraints in the database</param>
+    /// <returns></returns>
     public virtual IEnumerable<TEntity> Get(Expression<Func<TEntity, bool>>? filter = null, Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>>? orderBy = null, params string[] includes)
     {
         IQueryable<TEntity> query = _dbSet;

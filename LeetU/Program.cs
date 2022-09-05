@@ -4,6 +4,8 @@ using LeetU.Data.Repositories;
 using LeetU.Services;
 using LeetU.Services.Interfaces;
 
+//EVERYTHING STARTS HERE
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
