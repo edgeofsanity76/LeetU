@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace LeetU.Data.Interfaces;
 
-public interface IRepository<TEntity> where TEntity : class
+public interface IRepositoryCrud<TEntity> where TEntity : class
 {
     Task InsertAsync(TEntity entity);
     void Update(TEntity entity);

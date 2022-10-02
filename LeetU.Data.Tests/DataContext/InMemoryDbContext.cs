@@ -1,6 +1,6 @@
 using System;
 using LeetU.Data.Context;
-using LeetU.Data.Entites;
+using LeetU.Data.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace LeetU.Data.Tests.DataContext;

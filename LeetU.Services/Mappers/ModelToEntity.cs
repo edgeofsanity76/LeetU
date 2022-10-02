@@ -3,13 +3,13 @@
 namespace LeetU.Services.Mappers
 {
     /// <summary>
-    /// Model to Entity mapping
+    /// Entity to Model mapping. In another example I will use AutoMapper.
     /// </summary>
     internal static class ModelToEntity
     {
-        public static Data.Entites.Course CreateEntityFromCourse(Course course)
+        public static Data.Entities.Course CreateEntityFromCourse(Course course)
         {
-            return new Data.Entites.Course()
+            return new Data.Entities.Course()
             {
                 Name = course.Name,
                 Description = course.Description,

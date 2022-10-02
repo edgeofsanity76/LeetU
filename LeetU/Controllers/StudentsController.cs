@@ -7,6 +7,7 @@ namespace LeetU.Controllers;
 /// <summary>
 /// The student controller. All controllers should have MINIMAL code (why do you think minimal apis exist). We take the request and then just perform an action on the service
 /// Having minimal code reduces the need to test logic in these controllers, which is pretty tricky.
+/// We COULD use MediatR pattern here, but in this example we are just keeping things simple. Google MediatR if you're curious
 /// </summary>
 [ApiController]
 [Route("students")]

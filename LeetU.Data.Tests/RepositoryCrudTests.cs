@@ -1,6 +1,6 @@
 using System.Linq;
 using System.Threading.Tasks;
-using LeetU.Data.Entites;
+using LeetU.Data.Entities;
 using LeetU.Data.Tests.DataContext;
 using Xunit;
 // ReSharper disable PossibleMultipleEnumeration

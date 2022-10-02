@@ -12,22 +12,22 @@ namespace LeetU.Services;
 /// </summary>
 public class StudentService : IStudentService
 {
-    private readonly IStudentRepository _studentRepository;
-    private readonly IStudentCourseRepository _studentCourseRepository;
-    private readonly ICourseRepository _courseRepository;
+    private readonly IStudentRepositoryCrud _studentRepositoryCrud;
+    private readonly IStudentCourseRepositoryCrud _studentCourseRepositoryCrud;
+    private readonly ICourseRepositoryCrud _courseRepositoryCrud;
 
-    public StudentService(IStudentRepository studentRepository, 
-                          IStudentCourseRepository studentCourseRepository,
-                          ICourseRepository courseRepository)
+    public StudentService(IStudentRepositoryCrud studentRepositoryCrud, 
+                          IStudentCourseRepositoryCrud studentCourseRepositoryCrud,
+                          ICourseRepositoryCrud courseRepositoryCrud)
     {
-        _studentRepository = studentRepository;
-        _studentCourseRepository = studentCourseRepository;
-        _courseRepository = courseRepository;
+        _studentRepositoryCrud = studentRepositoryCrud;
+        _studentCourseRepositoryCrud = studentCourseRepositoryCrud;
+        _courseRepositoryCrud = courseRepositoryCrud;
     }
 
     public IEnumerable<StudentWithCourses> GetStudentsWithCourses(params long[] studentIds)
     {
-        var entities = _studentCourseRepository.Get(s => studentIds.Any(id => s.StudentId == id) || studentIds.Length == 0, null, "Student", "Course", "Student.Address");
+        var entities = _studentCourseRepositoryCrud.Get(s => studentIds.Any(id => s.StudentId == id) || studentIds.Length == 0, null, "Student", "Course", "Student.Address");
 
         var groupedCourses = entities.GroupBy(g => g.Student);
 
@@ -45,27 +45,27 @@ public class StudentService : IStudentService
 
     public async Task<int> SetStudentCourseAsync(long studentId, long courseId)
     {
-        var courseEntity = await _courseRepository.GetAsync(courseId);
+        var courseEntity = await _courseRepositoryCrud.GetAsync(courseId);
 
         if (courseEntity == null)
             throw new EntityNotFoundException($"The course with id {courseId} was not found");
 
-        var studentEntity = _studentCourseRepository.Get(s => s.StudentId == studentId).FirstOrDefault();
+        var studentEntity = _studentCourseRepositoryCrud.Get(s => s.StudentId == studentId).FirstOrDefault();
 
         if (studentEntity == null)
             throw new EntityNotFoundException($"The student with id {studentId} was not found");
 
         studentEntity.Course = courseEntity;
 
-        _studentCourseRepository.Update(studentEntity);
+        _studentCourseRepositoryCrud.Update(studentEntity);
 
-        var rowsAffected = await _courseRepository.SaveChangesAsync();
+        var rowsAffected = await _courseRepositoryCrud.SaveChangesAsync();
         return rowsAffected;
     }
 
     public IEnumerable<Student> GetStudents(params long[] studentIds)
     {
-        var entities = _studentRepository.Get(s => studentIds.Any(id => s.Id == id) || studentIds.Length == 0, null, "Address");
+        var entities = _studentRepositoryCrud.Get(s => studentIds.Any(id => s.Id == id) || studentIds.Length == 0, null, "Address");
 
         foreach (var entity in entities)
             yield return EntityToModel.CreateStudentFromEntity<Student>(entity);

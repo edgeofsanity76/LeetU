@@ -6,6 +6,9 @@ using Xunit;
 
 namespace LeetU.Services.Tests;
 
+/// <summary>
+/// StudentService tests. Here we are using the InMemoryDbContext we set up in the Data.Tests. It's completely reusable and provides a nice way of providing test data to our tests.
+/// </summary>
 public class StudentServiceTests : IClassFixture<InMemoryDbContext>
 {
     private readonly InMemoryDbContext _context;

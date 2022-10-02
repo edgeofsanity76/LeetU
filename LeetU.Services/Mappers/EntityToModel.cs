@@ -1,14 +1,15 @@
 ﻿using LeetU.Models;
 using LeetU.Models.Interfaces;
+using Student = LeetU.Data.Entities.Student;
 
 namespace LeetU.Services.Mappers
 {
     /// <summary>
-    /// Entity to Model mapping
+    /// Entity to Model mapping. In another example I will use AutoMapper.
     /// </summary>
     internal static class EntityToModel
     {
-        public static Course CreateCourseFromEntity(LeetU.Data.Entites.Course entity)
+        public static Course CreateCourseFromEntity(Data.Entities.Course entity)
         {
             return new Course()
             {
@@ -19,7 +20,7 @@ namespace LeetU.Services.Mappers
             };
         }
 
-        public static T CreateStudentFromEntity<T>(LeetU.Data.Entites.Student entity) where T : IStudent
+        public static T CreateStudentFromEntity<T>(Student entity) where T : IStudent
         {
             var student = Activator.CreateInstance<T>();
 
@@ -33,7 +34,7 @@ namespace LeetU.Services.Mappers
             return student;
         }
 
-        public static Address CreateAddressFromEntity(LeetU.Data.Entites.Address entity)
+        public static Address CreateAddressFromEntity(Data.Entities.Address entity)
         {
             return new Address()
             {
@@ -46,7 +47,7 @@ namespace LeetU.Services.Mappers
                 PostCode = entity?.PostCode ?? string.Empty
             };
         }
-        public static IEnumerable<Course> CreateCoursesFromEntities(IEnumerable<LeetU.Data.Entites.Course> courses)
+        public static IEnumerable<Course> CreateCoursesFromEntities(IEnumerable<Data.Entities.Course> courses)
         {
             return courses.Select(CreateCourseFromEntity);
         }
