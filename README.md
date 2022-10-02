@@ -1,3 +1,5 @@
+https://github.com/edgeofsanity76/LeetU/actions/workflows/dotnet.yml/badge.svg
+
 LeetU - A Basic REST API using Entity Framework Core and SQLite
 
 This is an archetypal WebAPI implementation using Entity Framework Core and SQLite. Obviously there are many ways to create an API like this.
@@ -9,7 +11,7 @@ This is just one example. It shows a typical layered approach to building an API
 - Datalayer and Entities
 - Unit Tests
 
-I beleive in clean architecture and a clear seperation of concerns. Many have advocated for just using the DbContext and removing the Repositories.
+I believe in clean architecture and a clear seperation of concerns. Many have advocated for just using the DbContext and removing the Repositories.
 I can see their point, but as the API grows, so does complex data logic which requires testing. The repos exist purely for testability and to allow for extension of the data layer without muddying service or controller layers.
 
 Please see comments in the code for more explanation.
