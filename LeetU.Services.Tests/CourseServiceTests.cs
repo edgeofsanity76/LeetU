@@ -61,17 +61,15 @@ namespace LeetU.Services.Tests
             var newCourse = new Course()
             {
                 Description = "NewCourseDescription",
-                Id = 11,
                 Name = "NewCourse",
                 StartDate = DateTime.Parse("01/01/2021")
             };
 
             await sut.SetCourseAsync(newCourse);
 
-            var course = sut.GetCourses(11).FirstOrDefault();
+            var course = sut.GetCourses().LastOrDefault();
 
             //Assert
-            Assert.Equal(11, course!.Id);
             Assert.Equal("NewCourse", course!.Name);
             Assert.Equal("NewCourseDescription", course!.Description);
             Assert.Equal("01/01/2021", course.StartDate.ToShortDateString());
