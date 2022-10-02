@@ -34,7 +34,7 @@ namespace LeetU.Services.Mappers
             return student;
         }
 
-        public static Address CreateAddressFromEntity(Data.Entities.Address entity)
+        public static Address? CreateAddressFromEntity(Data.Entities.Address entity)
         {
             return new Address()
             {
@@ -47,7 +47,7 @@ namespace LeetU.Services.Mappers
                 PostCode = entity?.PostCode ?? string.Empty
             };
         }
-        public static IEnumerable<Course> CreateCoursesFromEntities(IEnumerable<Data.Entities.Course> courses)
+        public static IEnumerable<Course>? CreateCoursesFromEntities(IEnumerable<Data.Entities.Course> courses)
         {
             return courses.Select(CreateCourseFromEntity);
         }

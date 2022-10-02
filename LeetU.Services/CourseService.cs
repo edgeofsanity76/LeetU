@@ -11,16 +11,16 @@ namespace LeetU.Services;
 /// </summary>
 public class CourseService : ICourseService
 {
-    private readonly ICourseRepositoryCrud _courseRepositoryCrud;
+    private readonly ICourseRepository _courseRepository;
 
-    public CourseService(ICourseRepositoryCrud courseRepositoryCrud)
+    public CourseService(ICourseRepository courseRepository)
     {
-        _courseRepositoryCrud = courseRepositoryCrud;
+        _courseRepository = courseRepository;
     }
 
     public IEnumerable<Course> GetCourses(params long[] courseIds)
     {
-        var courses = _courseRepositoryCrud.Get(c => courseIds.Any(id => c.Id == id) || courseIds.Length == 0);
+        var courses = _courseRepository.Get(c => courseIds.Any(id => c.Id == id) || courseIds.Length == 0);
 
         foreach (var entity in courses)
             yield return EntityToModel.CreateCourseFromEntity(entity);
@@ -29,8 +29,8 @@ public class CourseService : ICourseService
     public async Task<int> SetCourseAsync(Course course)
     {
         var entity = ModelToEntity.CreateEntityFromCourse(course);
-        await _courseRepositoryCrud.InsertAsync(entity);
-        var rowsAffected = await _courseRepositoryCrud.SaveChangesAsync();
+        await _courseRepository.InsertAsync(entity);
+        var rowsAffected = await _courseRepository.SaveChangesAsync();
         return rowsAffected;
     }
 }

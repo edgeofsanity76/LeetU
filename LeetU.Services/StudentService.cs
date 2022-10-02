@@ -14,15 +14,15 @@ public class StudentService : IStudentService
 {
     private readonly IStudentRepositoryCrud _studentRepositoryCrud;
     private readonly IStudentCourseRepositoryCrud _studentCourseRepositoryCrud;
-    private readonly ICourseRepositoryCrud _courseRepositoryCrud;
+    private readonly ICourseRepository _courseRepository;
 
     public StudentService(IStudentRepositoryCrud studentRepositoryCrud, 
                           IStudentCourseRepositoryCrud studentCourseRepositoryCrud,
-                          ICourseRepositoryCrud courseRepositoryCrud)
+                          ICourseRepository courseRepository)
     {
         _studentRepositoryCrud = studentRepositoryCrud;
         _studentCourseRepositoryCrud = studentCourseRepositoryCrud;
-        _courseRepositoryCrud = courseRepositoryCrud;
+        _courseRepository = courseRepository;
     }
 
     public IEnumerable<StudentWithCourses> GetStudentsWithCourses(params long[] studentIds)
@@ -45,7 +45,7 @@ public class StudentService : IStudentService
 
     public async Task<int> SetStudentCourseAsync(long studentId, long courseId)
     {
-        var courseEntity = await _courseRepositoryCrud.GetAsync(courseId);
+        var courseEntity = await _courseRepository.GetAsync(courseId);
 
         if (courseEntity == null)
             throw new EntityNotFoundException($"The course with id {courseId} was not found");
@@ -59,7 +59,7 @@ public class StudentService : IStudentService
 
         _studentCourseRepositoryCrud.Update(studentEntity);
 
-        var rowsAffected = await _courseRepositoryCrud.SaveChangesAsync();
+        var rowsAffected = await _courseRepository.SaveChangesAsync();
         return rowsAffected;
     }
 

@@ -4,6 +4,6 @@ namespace LeetU.Models
 {
     public class StudentWithCourses : Student, IStudentWithCourses
     {
-        public IEnumerable<Course> Courses { get;set; }
+        public IEnumerable<Course>? Courses { get;set; }
     }
 }

@@ -2,6 +2,6 @@
 {
     internal interface IStudentWithCourses : IStudent
     {
-        IEnumerable<Course> Courses { get;set; }
+        IEnumerable<Course>? Courses { get;set; }
     }
 }

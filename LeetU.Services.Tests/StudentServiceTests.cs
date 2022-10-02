@@ -1,6 +1,8 @@
 using System.Linq;
+using System.Threading.Tasks;
 using LeetU.Data.Repositories;
 using LeetU.Data.Tests.DataContext;
+using Microsoft.EntityFrameworkCore;
 using Xunit;
 // ReSharper disable PossibleMultipleEnumeration
 
@@ -37,6 +39,27 @@ public class StudentServiceTests : IClassFixture<InMemoryDbContext>
             Assert.Equal(i, students[i - 1].Id);
     }
 
+    [Theory]
+    [InlineData(1)]
+    [InlineData(2)]
+    [InlineData(3)]
+    [InlineData(4)]
+    [InlineData(5)]
+    public void ShouldGetStudentsById(int studentId)
+    {
+        //Arrange
+        _context.Reset();
+        var sut = new StudentService(new StudentRepository(_context.StudentContext),
+            new StudentCourseRepository(_context.StudentContext),
+            new CourseRepository(_context.StudentContext));
+
+        //Act
+        var student = sut.GetStudents(studentId).FirstOrDefault();
+
+        //Assert
+        Assert.Equal(studentId, student!.Id);
+    }
+
     [Fact]
     public void ShouldGetStudentsWithCourses()
     {
@@ -56,5 +79,22 @@ public class StudentServiceTests : IClassFixture<InMemoryDbContext>
             var courseData = studentCourseData.Where(x => x.StudentId == student.Id).ToList();
             Assert.True(courseData.All(x => x.StudentId == student.Id));
         }
+    }
+
+    [Fact]
+    public async Task ShouldSetStudentCourse()
+    {
+        //Arrange
+        _context.Reset();
+        var sut = new StudentService(new StudentRepository(_context.StudentContext),
+            new StudentCourseRepository(_context.StudentContext),
+            new CourseRepository(_context.StudentContext));
+
+        //Act
+        await sut.SetStudentCourseAsync(1, 5);
+        var student = _context.StudentContext.Students.Include(s => s.StudentCourses).FirstOrDefault(s => s.Id == 1);
+
+        //Assert
+        Assert.True(student!.StudentCourses.Count(s => s.CourseId == 5) == 1);
     }
 }

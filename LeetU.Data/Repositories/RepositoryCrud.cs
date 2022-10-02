@@ -8,13 +8,13 @@ namespace LeetU.Data.Repositories;
 /// Contains all the basic CRUD operations for all Entities. All repositories inherit from this class.
 /// </summary>
 /// <typeparam name="TEntity"></typeparam>
-public abstract class RepositoryCrudCrud<TEntity> : IRepositoryCrud<TEntity> where TEntity : class
+public abstract class RepositoryCrud<TEntity> : IRepositoryCrud<TEntity> where TEntity : class
 {
     private readonly DbSet<TEntity> _dbSet;
 
     public DbContext Context { get; }
 
-    protected RepositoryCrudCrud(DbContext context)
+    protected RepositoryCrud(DbContext context)
     {
         Context = context;
         _dbSet = context.Set<TEntity>();

@@ -15,7 +15,7 @@ builder.Services.AddControllers();
 
 builder.Services.AddSqlite<StudentContext>("DataSource=file:Student.db;Mode=ReadWrite");
 builder.Services.AddScoped<IStudentRepositoryCrud, StudentRepository>();
-builder.Services.AddScoped<ICourseRepositoryCrud, CourseRepository>();
+builder.Services.AddScoped<ICourseRepository, CourseRepository>();
 builder.Services.AddScoped<IStudentCourseRepositoryCrud, StudentCourseRepository>();
 builder.Services.AddScoped<IStudentService, StudentService>();
 builder.Services.AddScoped<ICourseService, CourseService>();
