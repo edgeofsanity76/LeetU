@@ -7,11 +7,14 @@ using Xunit;
 
 namespace LeetU.Data.Tests;
 
-public class RepositoryBaseTests : IClassFixture<InMemoryDbContext>
+/// <summary>
+/// Basic tests for CRUD operations
+/// </summary>
+public class RepositoryCrudTests : IClassFixture<InMemoryDbContext>
 {
     private readonly InMemoryDbContext _context;
 
-    public RepositoryBaseTests(InMemoryDbContext context) 
+    public RepositoryCrudTests(InMemoryDbContext context) 
     {
         _context = context;
     }

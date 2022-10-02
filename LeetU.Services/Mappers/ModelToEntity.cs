@@ -2,6 +2,9 @@
 
 namespace LeetU.Services.Mappers
 {
+    /// <summary>
+    /// Model to Entity mapping
+    /// </summary>
     internal static class ModelToEntity
     {
         public static Data.Entites.Course CreateEntityFromCourse(Course course)

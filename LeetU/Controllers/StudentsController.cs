@@ -4,6 +4,10 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace LeetU.Controllers;
 
+/// <summary>
+/// The student controller. All controllers should have MINIMAL code (why do you think minimal apis exist). We take the request and then just perform an action on the service
+/// Having minimal code reduces the need to test logic in these controllers, which is pretty tricky.
+/// </summary>
 [ApiController]
 [Route("students")]
 public class StudentsController : ControllerBase

@@ -4,7 +4,11 @@ using LeetU.Data.Interfaces;
 
 namespace LeetU.Data.Repositories
 {
-    public class CourseRepository : RepositoryBase<Course>, ICourseRepository
+    /// <summary>
+    /// WHY do you ask. WHY is this empty? Well, if there any repository operations that are specialised, they go here and not in the CRUD base
+    /// For example, if using Stored Procedures, the code to access them would be here.
+    /// </summary>
+    public class CourseRepository : RepositoryCrud<Course>, ICourseRepository
     {
         public CourseRepository(StudentContext context) : base(context)
         {

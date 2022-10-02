@@ -5,6 +5,10 @@ using Microsoft.EntityFrameworkCore;
 
 namespace LeetU.Data.Tests.DataContext;
 
+/// <summary>
+/// This is an in memory data context. This works exactly like a normal context would except its in memory. We use this for testing our repos and data services
+/// As well as providing a data service for all other testable services.
+/// </summary>
 public class InMemoryDbContext : IDisposable
 {
     public StudentContext StudentContext { get; private set; }

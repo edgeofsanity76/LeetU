@@ -6,6 +6,10 @@ using LeetU.Services.Mappers;
 
 namespace LeetU.Services;
 
+/// <summary>
+/// The student service. Contains the BUSINESS LOGIC for anything to do with courses. This includes marshalling the data access for controllers to the data layer.
+/// We use mappers to map Entities to Models and vice versa. We do not send entities over the wire, we always transform them tro models
+/// </summary>
 public class StudentService : IStudentService
 {
     private readonly IStudentRepository _studentRepository;

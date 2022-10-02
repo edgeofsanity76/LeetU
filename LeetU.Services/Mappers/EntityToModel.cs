@@ -3,6 +3,9 @@ using LeetU.Models.Interfaces;
 
 namespace LeetU.Services.Mappers
 {
+    /// <summary>
+    /// Entity to Model mapping
+    /// </summary>
     internal static class EntityToModel
     {
         public static Course CreateCourseFromEntity(LeetU.Data.Entites.Course entity)
