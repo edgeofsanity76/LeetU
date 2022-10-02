@@ -1,4 +1,4 @@
-!(https://github.com/edgeofsanity76/LeetU/actions/workflows/dotnet.yml/badge.svg)
+![Build](https://github.com/edgeofsanity76/LeetU/actions/workflows/dotnet.yml/badge.svg)
 
 LeetU - A Basic REST API using Entity Framework Core and SQLite
 
