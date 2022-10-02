@@ -59,7 +59,7 @@ public abstract class RepositoryBase<TEntity> : IRepository<TEntity> where TEnti
         return orderBy != null ? orderBy(query).ToList() : query.ToList();
     }
 
-    public virtual async Task<int> SaveChanges()
+    public virtual async Task<int> SaveChangesAsync()
     {
         var rowsAffected = await Context.SaveChangesAsync();
         return rowsAffected;

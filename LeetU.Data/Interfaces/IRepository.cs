@@ -10,6 +10,6 @@ public interface IRepository<TEntity> where TEntity : class
     void Delete(TEntity entity);
     Task<TEntity> GetAsync(long id);
     IEnumerable<TEntity> Get(Expression<Func<TEntity, bool>>? filter = null, Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>>? orderBy = null, params string[] includes);
-    Task<int> SaveChanges();
+    Task<int> SaveChangesAsync();
     public DbContext Context { get; }
 }

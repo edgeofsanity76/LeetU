@@ -3,13 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.1.32328.378
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LeetU", "LeetU\LeetU.csproj", "{C5E8304D-8A54-4516-B618-F3A8E561A1C3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LeetU", "LeetU\LeetU.csproj", "{C5E8304D-8A54-4516-B618-F3A8E561A1C3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LeetU.Data", "LeetU.Data\LeetU.Data.csproj", "{CFD51C64-AF18-465D-B6BA-7E91876DE9E5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LeetU.Data", "LeetU.Data\LeetU.Data.csproj", "{CFD51C64-AF18-465D-B6BA-7E91876DE9E5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LeetU.Models", "LeetU.Models\LeetU.Models.csproj", "{D2B3F490-79D9-415F-B82A-8E2898F90A0B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LeetU.Models", "LeetU.Models\LeetU.Models.csproj", "{D2B3F490-79D9-415F-B82A-8E2898F90A0B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LeetU.Services", "LeetU.Services\LeetU.Services.csproj", "{F8F8B454-328B-4FBF-A67F-D868D3AAD542}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LeetU.Services", "LeetU.Services\LeetU.Services.csproj", "{F8F8B454-328B-4FBF-A67F-D868D3AAD542}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LeetU.Data.Tests", "LeetU.Data.Tests\LeetU.Data.Tests.csproj", "{7F6B0F8A-3EC8-4F79-B9DA-60E6C85C97F1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LeetU.Services.Tests", "LeetU.Services.Tests\LeetU.Services.Tests.csproj", "{360EA7A6-EFA1-4151-9E83-C4B2FC066CF8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +37,14 @@ Global
 		{F8F8B454-328B-4FBF-A67F-D868D3AAD542}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F8F8B454-328B-4FBF-A67F-D868D3AAD542}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F8F8B454-328B-4FBF-A67F-D868D3AAD542}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7F6B0F8A-3EC8-4F79-B9DA-60E6C85C97F1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7F6B0F8A-3EC8-4F79-B9DA-60E6C85C97F1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7F6B0F8A-3EC8-4F79-B9DA-60E6C85C97F1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7F6B0F8A-3EC8-4F79-B9DA-60E6C85C97F1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{360EA7A6-EFA1-4151-9E83-C4B2FC066CF8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{360EA7A6-EFA1-4151-9E83-C4B2FC066CF8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{360EA7A6-EFA1-4151-9E83-C4B2FC066CF8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{360EA7A6-EFA1-4151-9E83-C4B2FC066CF8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

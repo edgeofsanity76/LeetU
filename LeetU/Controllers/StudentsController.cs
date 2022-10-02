@@ -51,7 +51,7 @@ public class StudentsController : ControllerBase
         }
         catch (EntityNotFoundException e)
         {
-            return new JsonResult(new NotFoundObjectResult(e.Message));
+            return new NotFoundObjectResult(e.Message);
         }
         
         return new OkResult();

@@ -26,7 +26,7 @@ public class CourseService : ICourseService
     {
         var entity = ModelToEntity.CreateEntityFromCourse(course);
         await _courseRepository.InsertAsync(entity);
-        var rowsAffected = await _courseRepository.SaveChanges();
+        var rowsAffected = await _courseRepository.SaveChangesAsync();
         return rowsAffected;
     }
 }

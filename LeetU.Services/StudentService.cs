@@ -55,7 +55,7 @@ public class StudentService : IStudentService
 
         _studentCourseRepository.Update(studentEntity);
 
-        var rowsAffected = await _courseRepository.SaveChanges();
+        var rowsAffected = await _courseRepository.SaveChangesAsync();
         return rowsAffected;
     }
 
