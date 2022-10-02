@@ -26,7 +26,7 @@ public class InMemoryDbContext : IDisposable
 
     public void CreateDatabase()
     {
-        var options = new DbContextOptionsBuilder<StudentContext>().UseInMemoryDatabase("TestDatabase").Options;
+        var options = new DbContextOptionsBuilder<StudentContext>().UseInMemoryDatabase(Guid.NewGuid().ToString()).Options;
         StudentContext = new StudentContext(options);
         StudentContext.Database.EnsureDeleted();
         StudentContext.Database.EnsureCreated();
