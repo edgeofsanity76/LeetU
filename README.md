@@ -27,6 +27,9 @@ Use the Swagger UI to query the database. The database is a SqlLite database, if
 
 I will be adding to this project as and when I feel like it.
 
-If you want to talk to me, please contact me on Discord on Duster76#3746
+If you want to talk to me, please contact me on 
+
+Discord on edgeofsanity76#3746
+Twitter @edgeofsanity76
 
 Thanks
