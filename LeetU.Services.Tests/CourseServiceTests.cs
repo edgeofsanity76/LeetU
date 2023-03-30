@@ -71,7 +71,7 @@ namespace LeetU.Services.Tests
 
             //Assert
             Assert.Equal("NewCourse", course!.Name);
-            Assert.Equal("NewCourseDescription", course!.Description);
+            Assert.Equal("NewCourseDescription", course.Description);
             Assert.Equal("01/01/2021", course.StartDate.ToShortDateString());
         }
     }

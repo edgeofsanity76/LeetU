@@ -1,7 +1,9 @@
 using System.Linq;
+using System.Net.Security;
 using System.Threading.Tasks;
 using LeetU.Data.Repositories;
 using LeetU.Data.Tests.DataContext;
+using LeetU.Services.Exceptions;
 using Microsoft.EntityFrameworkCore;
 using Xunit;
 // ReSharper disable PossibleMultipleEnumeration
@@ -96,5 +98,20 @@ public class StudentServiceTests : IClassFixture<InMemoryDbContext>
 
         //Assert
         Assert.True(student!.StudentCourses.Count(s => s.CourseId == 5) == 1);
+    }
+
+    [Fact]
+    public async Task ShouldNotSetCourseIfCourseAlreadyAssgined()
+    {
+        _context.Reset();
+        var sut = new StudentService(new StudentRepository(_context.StudentContext),
+            new StudentCourseRepository(_context.StudentContext),
+            new CourseRepository(_context.StudentContext));
+
+        //Act
+        await sut.SetStudentCourseAsync(1, 5);
+
+        //Assert
+        await Assert.ThrowsAsync<CourseAlreadyAssignedException>(() => sut.SetStudentCourseAsync(1, 5));
     }
 }

@@ -10,12 +10,12 @@ namespace LeetU.Controllers;
 /// We COULD use MediatR pattern here, but in this example we are just keeping things simple. Google MediatR if you're curious
 /// </summary>
 [ApiController]
-[Route("students")]
-public class StudentsController : ControllerBase
+[Route("student")]
+public class StudentController : ControllerBase
 {
     private readonly IStudentService _studentService;
 
-    public StudentsController(IStudentService studentService)
+    public StudentController(IStudentService studentService)
     {
         _studentService = studentService;
     }
@@ -32,13 +32,13 @@ public class StudentsController : ControllerBase
 
     [Route("")]
     [HttpGet]
-    public IActionResult GetAllStudents()
+    public IActionResult GetAll()
     {
         var students = _studentService.GetStudents();
         return new OkObjectResult(students);
     }
 
-    [Route("{studentId}/courses")]
+    [Route("{studentId}/course")]
     [HttpGet]
     public IActionResult GetStudentWithCourses([FromRoute] long studentId)
     {
@@ -46,7 +46,7 @@ public class StudentsController : ControllerBase
         return new OkObjectResult(students);
     }
 
-    [Route("{studentId}/courses/{courseId}")]
+    [Route("{studentId}/course/{courseId}")]
     [HttpPost]
     public async Task<IActionResult> SetStudentCourse([FromRoute] long studentId, [FromRoute] long courseId)
     {

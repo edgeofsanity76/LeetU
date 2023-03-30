@@ -25,6 +25,11 @@ public class StudentService : IStudentService
         _courseRepository = courseRepository;
     }
 
+    public bool HasCourse(long studentId, long courseId)
+    {
+        return _studentCourseRepositoryCrud.HasCourse(studentId, courseId);
+    }
+
     public IEnumerable<StudentWithCourses> GetStudentsWithCourses(params long[] studentIds)
     {
         var entities = _studentCourseRepositoryCrud.Get(s => studentIds.Any(id => s.StudentId == id) || studentIds.Length == 0, null, "Student", "Course", "Student.Address");
@@ -45,6 +50,9 @@ public class StudentService : IStudentService
 
     public async Task<int> SetStudentCourseAsync(long studentId, long courseId)
     {
+        if (_studentCourseRepositoryCrud.HasCourse(studentId, courseId))
+            throw new CourseAlreadyAssignedException(studentId, courseId);
+        
         var courseEntity = await _courseRepository.GetAsync(courseId);
 
         if (courseEntity == null)

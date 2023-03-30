@@ -1,6 +1,7 @@
 ﻿using LeetU.Data.Context;
 using LeetU.Data.Entities;
 using LeetU.Data.Interfaces;
+using Microsoft.EntityFrameworkCore;
 
 namespace LeetU.Data.Repositories;
 
