@@ -10,19 +10,19 @@ namespace LeetU.Controllers;
 /// We COULD use MediatR pattern here, but in this example we are just keeping things simple. Google MediatR if you're curious
 /// </summary>
 [ApiController]
-[Route("courses")]
-public class CoursesController : ControllerBase
+[Route("course")]
+public class CourseController : ControllerBase
 {
     private readonly ICourseService _courseService;
 
-    public CoursesController(ICourseService courseService)
+    public CourseController(ICourseService courseService)
     {
         _courseService = courseService;
     }
 
     [Route("")]
     [HttpGet]
-    public IActionResult GetAllCourses()
+    public IActionResult GetAll()
     {
         var courses = _courseService.GetCourses();
         return new OkObjectResult(courses);
