@@ -33,4 +33,26 @@ public class CourseService : ICourseService
         var rowsAffected = await _courseRepository.SaveChangesAsync();
         return rowsAffected;
     }
+    
+    public async Task<int> UpdateCourseAsync(Course course)
+    {
+        var entity = ModelToEntity.UpdateEntityFromCourse(_courseRepository.Get(c => c.Id == course.Id).FirstOrDefault()!, course);
+        _courseRepository.Update(entity);
+        var rowsAffected = await _courseRepository.SaveChangesAsync();
+        return rowsAffected;
+    }
+
+    public async Task<int> DeleteCourseAsync(long courseId)
+    {
+        var entity = _courseRepository.Get(c => c.Id == courseId).FirstOrDefault();
+        if (entity == null)
+            return 0;
+
+        if (entity.StudentCourses.Any())
+            throw new Exception("Cannot delete a course that has students enrolled in it");
+
+        _courseRepository.Delete(entity);
+        var rowsAffected = await _courseRepository.SaveChangesAsync();
+        return rowsAffected;
+    }
 }
