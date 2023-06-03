@@ -8,7 +8,7 @@ namespace LeetU.Services;
 
 /// <summary>
 /// The student service. Contains the BUSINESS LOGIC for anything to do with courses. This includes marshalling the data access for controllers to the data layer.
-/// We use mappers to map Entities to Models and vice versa. We do not send entities over the wire, we always transform them tro models
+/// We use mappers to map Entities to Models and vice versa. We do not send entities over the wire, we always transform them to models
 /// </summary>
 public class StudentService : IStudentService
 {
@@ -28,6 +28,22 @@ public class StudentService : IStudentService
     public bool HasCourse(long studentId, long courseId)
     {
         return _studentCourseRepositoryCrud.HasCourse(studentId, courseId);
+    }
+
+    public async Task<int> SetStudentAsync(Student student)
+    {
+        var entity = ModelToEntity.CreateEntityFromStudent(student);
+        await _studentRepositoryCrud.InsertAsync(entity);
+        var rowsAffected = await _studentRepositoryCrud.SaveChangesAsync();
+        return rowsAffected;
+    }
+
+    public async Task<int> UpdateStudentAsync(Student student)
+    {
+        var entity = ModelToEntity.UpdateEntityFromStudent(_studentRepositoryCrud.Get(s => s.Id == student.Id).FirstOrDefault()!, student);
+        _studentRepositoryCrud.Update(entity);
+        var rowsAffected = await _studentRepositoryCrud.SaveChangesAsync();
+        return rowsAffected;
     }
 
     public IEnumerable<StudentWithCourses> GetStudentsWithCourses(params long[] studentIds)

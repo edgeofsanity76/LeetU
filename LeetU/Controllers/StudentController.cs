@@ -42,8 +42,8 @@ public class StudentController : ControllerBase
     [HttpGet]
     public IActionResult GetStudentWithCourses([FromRoute] long studentId)
     {
-        var students = _studentService.GetStudentsWithCourses(studentId);
-        return new OkObjectResult(students);
+        var students = _studentService.GetStudentsWithCourses(studentId).ToList();
+        return !students.Any() ? new NotFoundResult() : new OkObjectResult(students.FirstOrDefault());
     }
 
     [Route("{studentId}/course/{courseId}")]

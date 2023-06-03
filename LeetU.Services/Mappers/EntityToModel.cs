@@ -8,7 +8,7 @@ namespace LeetU.Services.Mappers;
 /// <summary>
 /// Entity to Model mapping. In another example I will use AutoMapper.
 /// </summary>
-internal static class EntityToModel
+public static class EntityToModel
 {
     public static Course CreateCourseFromEntity(Data.Entities.Course entity)
     {
@@ -51,5 +51,38 @@ internal static class EntityToModel
     public static IEnumerable<Course>? CreateCoursesFromEntities(IEnumerable<Data.Entities.Course> courses)
     {
         return courses.Select(CreateCourseFromEntity);
+    }
+
+    public static Course UpdateCourseFromEntity(Data.Entities.Course courseEntity, Course courseModel)
+    {
+        return new Course()
+        {
+            Id = courseEntity.Id,
+            Name = courseModel.Name,
+            Description = courseModel.Description,
+            StartDate = courseModel.StartDate
+        };
+    }
+
+    public static Data.Entities.Course UpdateCourseFromModel(Data.Entities.Course courseEntity, Course courseModel)
+    {
+        return new Data.Entities.Course()
+        {
+            Id = courseEntity.Id,
+            Name = courseModel.Name,
+            Description = courseModel.Description,
+            StartDate = courseModel.StartDate.ToShortDateString()
+        };
+    }
+
+    public static Data.Entities.Course CreateCourseFromModel(Course courseModel)
+    {
+        return new Data.Entities.Course()
+        {
+            Id = courseModel.Id,
+            Name = courseModel.Name,
+            Description = courseModel.Description,
+            StartDate = courseModel.StartDate.ToShortDateString()
+        };
     }
 }

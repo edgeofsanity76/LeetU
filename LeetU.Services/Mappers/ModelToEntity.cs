@@ -35,6 +35,22 @@ internal static class ModelToEntity
         return courseEntity;
     }
 
+    public static Data.Entities.Student UpdateEntityFromStudent(Data.Entities.Student student, Student studentModel)
+    {
+        if (student == null)
+            throw new ArgumentNullException(nameof(student));
+
+        if (studentModel == null)
+            throw new ArgumentNullException(nameof(studentModel));
+
+        student.Name = studentModel.Name;
+        student.Surname = studentModel.Surname;
+        student.Sex = (int) studentModel.Sex;
+        student.DateOfBirth = studentModel.DateOfBirth.ToShortDateString();
+
+        return student;
+    }
+
     // Create a student entity from a student model
     public static Data.Entities.Student CreateEntityFromStudent(Student student)
     {
