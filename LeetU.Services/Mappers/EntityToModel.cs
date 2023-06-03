@@ -1,5 +1,6 @@
 ﻿using LeetU.Models;
 using LeetU.Models.Interfaces;
+using System.Globalization;
 using Student = LeetU.Data.Entities.Student;
 
 namespace LeetU.Services.Mappers;
@@ -27,7 +28,7 @@ internal static class EntityToModel
         student.Id = entity.Id;
         student.Name = entity.Name;
         student.Surname = entity.Surname;
-        student.DateOfBirth = DateTime.Parse(entity.DateOfBirth);
+        student.DateOfBirth = DateTime.ParseExact(entity.DateOfBirth, "dd/MM/yyyy", CultureInfo.InvariantCulture);
         student.Sex = (Sex)entity.Sex;
         student.Address = CreateAddressFromEntity(entity.Address);
 
